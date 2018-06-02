@@ -1,3 +1,7 @@
+import request from '@/utils/request.js'
+import auth from '@/api/auth.js'
+çç
+window.request = request;
 export default {
   name: 'login',
   data () {
@@ -8,14 +12,9 @@ export default {
   },
   methods:{
     open(){
-      this.$alert('内容','标题',{
-        confirmButtonText:'Ok',
-        callback:action => {
-          this.$message({
-            type:'info',
-            message:`action`
-          })
-        }
+      this.$message({
+        message:'提示消息',
+        type:'success'
       })
     }
   }
