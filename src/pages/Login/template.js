@@ -1,7 +1,10 @@
 import request from '@/utils/request.js'
 import auth from '@/api/auth.js'
-çç
+import blog from '@/api/blog.js'
+
 window.request = request;
+window.auth = auth;
+window.blog = blog;
 export default {
   name: 'login',
   data () {
