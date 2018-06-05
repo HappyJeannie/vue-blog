@@ -40,36 +40,3 @@
 .article iframe {
   margin: 1em 0;
 }
-#detail .user-info {
-  display: grid;
-  grid: auto auto / 80px 1fr;
-  margin-top: 30px;
-  padding-bottom: 20px;
-  border-bottom: 1px solid #ebebeb;
-}
-#detail .user-info .avatar {
-  grid-column: 1;
-  grid-row: 1 / span 2;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-}
-#detail .user-info h3 {
-  grid-column: 2;
-  grid-row: 1;
-  margin: 5px 0;
-}
-#detail .user-info p {
-  grid-column: 2;
-  grid-row: 2;
-  margin-top: 0;
-  font-size: 12px;
-  color: #999;
-}
-#detail .user-info p a {
-  color: #009933;
-  text-decoration: none;
-}
-#detail .article {
-  padding: 30px 0;
-}
