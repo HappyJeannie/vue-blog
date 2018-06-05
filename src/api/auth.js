@@ -1,23 +1,23 @@
-import request from '@/utils/request.js';
+import request from '../utils/request';
 
-const URL = {
-  REGISTER:'/auth/register',
-  LOGIN:'/auth/login',
-  LOGOUT:'/auth/logout',
-  GET_INFO:'/auth'
+let URL = {
+  REGISTER : '/auth/register',
+  LOGIN : '/auth/login',
+  LOGOUT : '/auth/logout',
+  GETINFO : '/auth'
 }
 
 export default {
-  register({username,password}){
-    return request(URL.REGISTER , 'post' , { username , password });
+  register({ username , password }){
+    return request( URL.REGISTER , 'post' , { username , password } )
   },
-  login({username,password}){
-    return request( URL.LOGIN , 'post' , {username , password} )
+  login({ username , password }){
+    return request( URL.LOGIN , 'post' , { username , password } )
   },
   logout(){
-    return request( URL.LOGOUT , 'get' )
+    return request( URL.LOGOUT )
   },
   getInfo(){
-    return request( URL.GET_INFO , 'get' )
+    return request( URL.GETINFO )
   }
 }

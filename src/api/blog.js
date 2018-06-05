@@ -1,33 +1,36 @@
-import request from '@/utils/request.js';
+import request from '@/utils/request.js'
 
-const URL = {
-  GET_LIST:'/blog',
-  GET_DETAIL:'/blog/:blogId',
-  CREATE:'/blog',
-  EDIT:'/blog/:blogId',
-  DELETE:'/blog/:blogId'
+let URL = {
+  GETLISTS : '/blog',
+  GETDETAIL : '/blog/:blogId',
+  CREATE : '/blog',
+  EDIT : '/blog/:blogId',
+  DELETE : '/blog/:blogId'
 }
 
 export default {
-  getBlogs({page=1,userId,atIndex} = {page:1}){
-    return request( URL.GET_LIST , 'GET' , { page , userId , atIndex });
+  getBlogs({page=1,userId,atIndex} = {page : 1}){
+    return request( URL.GETLISTS, 'get' , { page , userId , atIndex } )
   },
-  getIndexBlogs({ page = 1 } = { page : 1 }){
+  getIndexBlogs({page = 1} = { page : 1 }){
     return this.getBlogs({page,atIndex:true})
   },
-  getBlogsByUserId(userId,{page= 1,atIndex} = { page : 1 }){
-    return this.getBlogs({userId,page,atIndex});
+  getBlogsByUserId(userId,{page = 1,atIndex} = {page : 1}){
+    return this.getBlogs({page,userId,atIndex})
   },
-  getDetail({blogId}){
-    return request( URL.GET_DETAIL.replace(':blogId',blogId) , 'get' )
+  getBlogsByPage(page){
+    return this.getBlogs({page : page})
   },
-  updateBlog({blogId},{title,content,desc,atIndex}){
-    return request( URL.EDIT.replace(':blogId',blogId) , 'patch',{title,content,desc,atIndex} )
+  getDetail( blogId ){
+    return request( URL.GETDETAIL.replace( '/:blogId' , blogId ))
   },
-  detailBlog({blogId}){
-    return request( URL.DELETE.replace(':blogId',blogId) , 'DELETE' )
+  create({ title , content , description }){
+    return request( URL.CREATE , 'post' , { title , content , description } )
   },
-  createBlog({title='',content='',desc='',atIndex=false} = {title:'',content:'',desc:'',atIndex:false}){
-    return request( URL.CREATE , 'post' ,{title,content,desc})
+  edit( blogId , { title , content , description }){
+    return request( URL.EDIT.replace( '/:blogId' , blogId ) , 'patch' , { title , content , description })
+  },
+  delete( blogId ){
+    return request( URL.DELETE.replace( '/:blogId' , blogId ) , 'delete')
   }
 }

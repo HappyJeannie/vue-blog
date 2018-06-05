@@ -1,35 +1,37 @@
-import axios from 'axios';
-import {Message} from 'element-ui';
-
-//设置全局axios的默认值
+import axios from 'axios'
+import { Message } from 'element-ui'
 
 axios.defaults.baseURL = 'http://blog-server.hunger-valley.com';
-axios.defaults.withCredentials = true;
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+axios.defaults.withCredentials = true;
 
-export default function request(url,type = 'GET',data={}){
+export default function request( url , method = 'GET' , data ){
   return new Promise((resolve,reject) => {
-    let option = {
+    let options = {
       url,
-      method:type
+      method
     }
-    if(type.toLowerCase() === 'get'){
-      option.pramas = data;
+    if(method.toLowerCase() === 'get'){
+      options.params = data;
     }else{
-      option.data = data;
+      options.data = data;
     }
-    axios(option)
+    axios(options)
     .then((res) => {
       if(res.data.status === 'ok'){
-        resolve(res.data)
+        Message({
+          message : res.data.msg ,
+          type : 'success'
+        })
+        resolve(res.data);
       }else{
-        Message.error(res.data.msg)
-        reject(res.data)
+        Message.error(res.data.msg);
+        reject(res.data);
       }
     })
-    .catch((err)=>{
-      Message.error('网络异常')
-      reject({msg:'网络异常'})
+    .catch((res) => {
+      Message.error('网络异常');
+      reject({img:'网络异常'})
     })
   })
 }
