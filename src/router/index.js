@@ -11,7 +11,7 @@ import My from '@/pages/My/template.vue'
 
 Vue.use(Router)
 
-export default new Router({
+const router =  new Router({
   routes: [
     {
       path: '/',
@@ -29,29 +29,48 @@ export default new Router({
       component: Register
     },
     {
-      path: '/detail',
+      path: '/detail/:blogId',
       name: 'detail',
       component: Detail
     },
     {
       path: '/create',
       name: 'create',
-      component: Create
+      component: Create,
+      meta:{
+        requiresAuth:true
+      }
     },
     {
-      path: '/edit',
+      path: '/edit/:blogId',
       name: 'edit',
-      component: Edit
+      component: Edit,
+      meta:{
+        requiresAuth:true
+      }
     },
     {
-      path: '/user',
+      path: '/user/:userId',
       name: 'user',
       component: User
     },
     {
       path: '/my',
       name: 'my',
-      component: My
+      component: My,
+      meta:{
+        requiresAuth:true
+      }
     }
   ]
 })
+
+router.beforeEach(function (to, from, next) {
+  if (to.path === '/forbidden') {
+    next(false)
+  } else {
+    next()
+  }
+})
+
+export default router;
