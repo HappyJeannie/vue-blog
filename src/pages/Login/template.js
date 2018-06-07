@@ -1,24 +1,42 @@
-import request from '@/utils/request.js'
-import auth from '@/api/auth.js'
-import blog from '@/api/blog.js'
+import { mapActions } from 'vuex';
 
-window.request = request;
-window.auth = auth;
-window.blog = blog;
 export default {
   name: 'login',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App',
-      visiable: false
+      username:'',
+      password:''
     }
   },
   methods:{
-    open(){
-      this.$message({
-        message:'提示消息',
-        type:'success'
-      })
+    ...mapActions([
+      'login'
+    ]),
+    onLogin(){
+      if(this.username === '' || this.password === ''){
+        this.$message({
+          type:'error',
+          message:'用户名/密码不能为空'
+        })
+      }else{
+        this.login({username:this.username,password:this.password})
+          .then(
+            (res) => {
+              this.$message({
+                type:'success',
+                message:'登录成功'
+              })
+              this.$router.push({path:'/'})
+            },
+            (res) => {
+              this.$message({
+                type:'error',
+                message:res.msg
+              })
+            }
+        )
+      }
+      console.log(this.username + ' ' + this.password)
     }
   }
 }

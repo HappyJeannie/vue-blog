@@ -11,11 +11,35 @@ body {
 }
 .el-button {
   font-size: 13px;
-  color: #060;
   line-height: 28px;
   height: 28px;
   padding: 0px 8px;
   border-radius: 4px;
   font-weight: normal;
   border: none;
+  color: #009933;
+  border: 1px solid rgba(0, 153, 51, 0.6);
+  background: #fff;
+}
+.el-button.el-button-medium {
+  font-size: 15px;
+  padding: 0 12px;
+  font-weight: normal;
+  line-height: 28px;
+}
+.el-button:hover {
+  color: #fff;
+  background: rgba(0, 153, 51, 0.6);
+}
+input {
+  line-height: 40px;
+  border: 1px solid #eaeaea;
+  padding: 0 10px;
+  border-radius: 4px;
+  outline: none;
+  display: block;
+  width: 100%;
+}
+input:focus {
+  border-color: rgba(0, 153, 51, 0.6);
 }
