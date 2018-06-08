@@ -26,7 +26,8 @@ export default {
                 type:'success',
                 message:'登录成功'
               })
-              this.$router.push({path:'/'})
+              console.log(this.$route.query.redirect)
+              this.$router.push({path:this.$route.query.redirect || '/'})
             },
             (res) => {
               this.$message({

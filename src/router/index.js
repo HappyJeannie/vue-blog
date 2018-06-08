@@ -1,13 +1,14 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Index from '@/pages/Index/template.vue'
-import Login from '@/pages/Login/template.vue'
-import Register from '@/pages/Register/template.vue'
-import Detail from '@/pages/Detail/template.vue'
-import Create from '@/pages/Create/template.vue'
-import Edit from '@/pages/Edit/template.vue'
-import User from '@/pages/User/template.vue'
-import My from '@/pages/My/template.vue'
+// import Index from '@/pages/Index/template.vue'
+// import Login from '@/pages/Login/template.vue'
+// import Register from '@/pages/Register/template.vue'
+// import Detail from '@/pages/Detail/template.vue'
+// import Create from '@/pages/Create/template.vue'
+// import Edit from '@/pages/Edit/template.vue'
+// import User from '@/pages/User/template.vue'
+// import My from '@/pages/My/template.vue'
+import store from './../store'
 
 Vue.use(Router)
 
@@ -16,27 +17,27 @@ const router =  new Router({
     {
       path: '/',
       name: 'index',
-      component: Index
+      component: () => import('@/pages/Index/template.vue')
     },
     {
       path: '/login',
       name: 'login',
-      component: Login
+      component: () => import('@/pages/Login/template.vue')
     },
     {
       path: '/register',
       name: 'register',
-      component: Register
+      component: () => import('@/pages/Register/template.vue')
     },
     {
       path: '/detail/:blogId',
       name: 'detail',
-      component: Detail
+      component: () => import('@/pages/Detail/template.vue')
     },
     {
       path: '/create',
       name: 'create',
-      component: Create,
+      component: () => import('@/pages/Create/template.vue'),
       meta:{
         requiresAuth:true
       }
@@ -44,7 +45,7 @@ const router =  new Router({
     {
       path: '/edit/:blogId',
       name: 'edit',
-      component: Edit,
+      component: () => import('@/pages/Edit/template.vue'),
       meta:{
         requiresAuth:true
       }
@@ -52,12 +53,12 @@ const router =  new Router({
     {
       path: '/user/:userId',
       name: 'user',
-      component: User
+      component: () => import('@/pages/User/template.vue')
     },
     {
       path: '/my',
       name: 'my',
-      component: My,
+      component: () => import('@/pages/My/template.vue'),
       meta:{
         requiresAuth:true
       }
@@ -66,10 +67,19 @@ const router =  new Router({
 })
 
 router.beforeEach(function (to, from, next) {
-  if (to.path === '/forbidden') {
-    next(false)
-  } else {
-    next()
+  if(to.matched.some(record => record.meta.requiresAuth)){
+    store.dispatch('checkLogin').then((isLogin) => {
+      if(!isLogin){
+        next({
+          path:'/login',
+          query:{redirect:to.fullPath}
+        })
+      }else{
+        next()
+      }
+    })
+  }else{
+    next();
   }
 })
 
