@@ -9,8 +9,8 @@
       </el-row>
     </template>
     <template v-else>
-      <h1>let's share</h1>
-      <i class="edit el-icon-edit"></i>
+      <h1><router-link to="/">let's share</router-link></h1>
+      <router-link to="/create"><i class="edit el-icon-plus"></i></router-link>
       <div class="user">
         <img :src="user.avatar" class="avatar" :alt="user.name">
         <ul>
@@ -86,6 +86,9 @@ header.login{
     padding: 0;
     text-transform: uppercase;
     flex: 1;  
+    a{
+      color: #fff;
+    }
   }
   .edit{
     font-size: 30px;

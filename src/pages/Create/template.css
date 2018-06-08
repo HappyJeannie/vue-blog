@@ -1,4 +1,5 @@
-h1, h2 {
+h1,
+h2 {
   font-weight: normal;
 }
 ul {
@@ -12,7 +13,7 @@ li {
 a {
   color: #42b983;
 }
-.msg{
+.msg {
   text-align: right;
   font-size: 14px;
 }

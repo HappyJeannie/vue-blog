@@ -24,7 +24,7 @@ export default {
   getDetail( blogId ){
     return request( URL.GETDETAIL.replace( '/:blogId' , blogId ))
   },
-  create({ title , content , description }){
+  create({ title = '' , content = '' , description = '' , atIndex = false } = {title:'',content:'',description:'',atIndex:false}){
     return request( URL.CREATE , 'post' , { title , content , description } )
   },
   edit( blogId , { title , content , description }){
