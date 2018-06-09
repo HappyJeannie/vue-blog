@@ -22,15 +22,15 @@ export default {
     return this.getBlogs({page : page})
   },
   getDetail( blogId ){
-    return request( URL.GETDETAIL.replace( '/:blogId' , blogId ))
+    return request( URL.GETDETAIL.replace( ':blogId' , blogId ))
   },
   create({ title = '' , content = '' , description = '' , atIndex = false } = {title:'',content:'',description:'',atIndex:false}){
     return request( URL.CREATE , 'post' , { title , content , description } )
   },
   edit( blogId , { title , content , description }){
-    return request( URL.EDIT.replace( '/:blogId' , blogId ) , 'patch' , { title , content , description })
+    return request( URL.EDIT.replace( ':blogId' , blogId ) , 'patch' , { title , content , description })
   },
   delete( blogId ){
-    return request( URL.DELETE.replace( '/:blogId' , blogId ) , 'delete')
+    return request( URL.DELETE.replace( ':blogId' , blogId ) , 'delete')
   }
 }

@@ -6,9 +6,13 @@ import 'element-ui/lib/theme-chalk/index.css'
 import App from './App'
 import router from './router'
 import store from './store'
+import formatDate from './utils/formatDate'
 
 Vue.config.productionTip = false
 Vue.use(ElementUI)
+Vue.use(formatDate)
+console.log(Vue)
+window.Vue = Vue
 
 /* eslint-disable no-new */
 new Vue({

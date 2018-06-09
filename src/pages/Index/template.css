@@ -37,3 +37,7 @@
   grid-row: 2;
   margin-top: 0;
 }
+#index section.page {
+  text-align: center;
+  margin: 20px 0px;
+}
