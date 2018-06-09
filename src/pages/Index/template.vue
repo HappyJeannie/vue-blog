@@ -6,7 +6,7 @@
             <img :src="blog.user.avatar == null ? 'http://cn.gravatar.com/avatar/1?s=128&d=identicon' : blog.user.avatar " alt="">
             <figcaption>{{blog.user.username}}</figcaption>  
           </figure>
-          <h3>{{blog.title}}<span>{{blog.updatedAt}}</span></h3>
+          <h3>{{blog.title}}<span>{{formatDate(blog.updatedAt)}}</span></h3>
           <p>{{blog.description == '' ? '暂时没有简介' : blog.description }}</p>
       </router-link>
       

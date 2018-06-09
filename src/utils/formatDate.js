@@ -24,7 +24,7 @@ function formatDate(dataStr){
 
 export default {
   install(Vue,options){
-    Vue.protoytpe.formatDate = formatDate
+    Vue.prototype.formatDate = formatDate
   }
 }
 // export default {
