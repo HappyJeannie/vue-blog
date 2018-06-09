@@ -27,8 +27,8 @@ export default {
   create({ title = '' , content = '' , description = '' , atIndex = false } = {title:'',content:'',description:'',atIndex:false}){
     return request( URL.CREATE , 'post' , { title , content , description } )
   },
-  edit( blogId , { title , content , description }){
-    return request( URL.EDIT.replace( ':blogId' , blogId ) , 'patch' , { title , content , description })
+  edit( blogId , { title , content , description , atIndex }){
+    return request( URL.EDIT.replace( ':blogId' , blogId ) , 'patch' , { title , content , description ,atIndex})
   },
   delete( blogId ){
     return request( URL.DELETE.replace( ':blogId' , blogId ) , 'delete')
